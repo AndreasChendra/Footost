@@ -13,10 +13,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+//all can access
+Route::get('/', function () {
+    return view('index');
+});
+Route::get('/profile', function () {
+    return view('profile');
+});
+Route::get('/createshop', function () {
+    return view('create_shop');
+});
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => ['auth', 'admin']], function(){
+    //just admin can access
+
+});
+
+
+Route::group(['middleware' => ['auth', 'member']], function(){
+    //just member can access
+
+});
+
+
+Route::group(['middleware' => ['auth']], function(){
+    //must login to access
+
+});
