@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Kost')
 
 @section('content')
     <div class="container">
@@ -54,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="d-grid mt-3">
-                                <a href="" class="btn btn-success">Detail</a>
+                                <a href="/kost/detail" class="btn btn-success">Detail</a>
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,13 @@ Route::get('/createshop', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/profile', 'UserController@index');
+
+Route::get('/kost', 'KostController@index');
+Route::get('/kost/detail', 'KostController@show');
+
+Route::get('/food&drink', 'FoodDrinkController@index');
+
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     //just admin can access

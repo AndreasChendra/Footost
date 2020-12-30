@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Footost</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -56,16 +56,22 @@
                             <li class="nav-item dropdown" style="position: absolute; right: 5%; top: 30%;">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="/images/profile.jpg" alt="" style="border-radius: 50%" width="35px" height="35px">
-                                    <span class="pl-4" style="font-size: 20px; color: white;">johan</span>
-                                    {{-- {{ Auth::user()->name }} --}}
+                                    <span class="pl-4" style="font-size: 20px; color: white;">
+                                        {{ Auth::user()->name }}
+                                    </span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href=""
+                                    <a class="dropdown-item" href="/profile"
                                        onclick="event.preventDefault();
-                                                     document.getElementById().submit();">
+                                                     document.getElementById('profile-form').submit();">
                                         Profile
                                     </a>
+
+                                    <form id="profile-form" action="/profile" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+                                    
                                     <a class="dropdown-item" href=""
                                        onclick="event.preventDefault();
                                                      document.getElementById().submit();">
