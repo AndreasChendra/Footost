@@ -4,28 +4,26 @@
     <div class="container">
         <div>
             <h1  class="text-center">Profile</h1>
+            <a href="" style="font-size: 18px">Change Password</a>
             <div class="row  justify-content-center">
                 <div class="card pt-4" style="width: 50rem">
                     <div class="row px-5 ml-3">
                         <div class="col-md-4">
-                            <img src="/images/profile.jpg" alt="" width="100px" height="100px" style="border-radius: 50%">
+                            <img src="/images/{{Auth::user()->img_profile}}" alt="" width="100px" height="100px" style="border-radius: 50%">
                         </div>
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">User1</p>
+                            <strong><p style="font-size: 25px">{{Auth::user()->name}}</p></strong>
                         </div>
                         <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Change</a>
+                           <a href="" style="font-size: 18px">Update Profile</a>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">Tempat, Tanggal Lahir</p>
+                            <p style="font-size: 18px">Place and Date of Birth</p>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">Jakarta, 1 Januari 2000</p>
-                        </div>
-                        <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Change</a>
+                            <p style="font-size: 18px">{{Auth::user()->place_of_birth}}, {{date('d-m-Y', strtotime(Auth::user()->date_of_birth))}}</p>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
@@ -33,32 +31,15 @@
                             <p style="font-size: 18px">Email</p>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">user1@email.com</p>
-                        </div>
-                        <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Change</a>
+                            <p style="font-size: 18px">{{Auth::user()->email}}</p>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">No. HP</p>
+                            <p style="font-size: 18px">Phone</p>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">08123456789</p>
-                        </div>
-                        <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Change</a>
-                        </div>
-                    </div>
-                    <div class="row px-5 ml-4">
-                        <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">Password</p>
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">*********</p>
-                        </div>
-                        <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Change</a>
+                            <p style="font-size: 18px">{{Auth::user()->phone_number}}</p>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
@@ -66,7 +47,7 @@
                             <p style="font-size: 18px">Gender</p>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <p style="font-size: 18px">Male</p>
+                            <p style="font-size: 18px">{{Auth::user()->gender}}</p>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
@@ -74,7 +55,12 @@
                             <p style="font-size: 18px">Status</p>
                         </div>
                         <div class="col-md-4 mt-4">
+                            @if (Auth::user()->vip_expired > $nowtime)
+                            <p style="font-size: 18px">VIP</p>
+                            <p style="font-size: 15px">Until {{date('d-m-Y', strtotime(Auth::user()->vip_expired))}}</p>
+                            @else
                             <p style="font-size: 18px">Membership</p>
+                            @endif
                         </div>
                     </div>                                       
                 </div>

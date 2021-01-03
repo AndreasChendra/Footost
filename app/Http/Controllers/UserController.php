@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Carbon\Carbon;
+use Auth;
 
 class UserController extends Controller
 {
@@ -80,5 +83,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function viewProfile(){
+        $user = User::select()->where('id', Auth::user()->id);
+        $nowtime = Carbon::now();
+
+        return view('profile',['users'=>$user, 'nowtime'=>$nowtime]);
     }
 }

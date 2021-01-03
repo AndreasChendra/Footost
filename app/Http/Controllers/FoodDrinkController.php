@@ -13,7 +13,12 @@ class FoodDrinkController extends Controller
      */
     public function index()
     {
-        return view('subfnb');
+        return view('foodndrink.subfood');
+    }
+
+    public function cafe()
+    {
+        return view('foodndrink.cafe');
     }
 
     /**
@@ -43,9 +48,9 @@ class FoodDrinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(/*$id*/)
     {
-        //
+        return view('foodndrink.cafedetail');
     }
 
     /**

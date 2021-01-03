@@ -71,7 +71,7 @@
                                     <form id="profile-form" action="/profile" method="GET" class="d-none">
                                         @csrf
                                     </form>
-                                    
+                                    {{-- kalau ada shop tampilin my shop --}}
                                     <a class="dropdown-item" href=""
                                        onclick="event.preventDefault();
                                                      document.getElementById().submit();">

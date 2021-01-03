@@ -30,7 +30,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="username@footost.com">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -41,12 +41,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="pdob" class="col-md-4 col-form-label text-md-right">{{ __('Tempat dan Tanggal Lahir') }}</label>
+                            <label for="place_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Place of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="pdob" type="pdob" class="form-control @error('PDoB') is-invalid @enderror" name="pdob" value="{{ old('pdob') }}" required autocomplete="pdob">
+                                <input id="place_of_birth" type="place_of_birth" class="form-control @error('place_of_birth') is-invalid @enderror" name="place_of_birth" value="{{ old('place_of_birth') }}" required autocomplete="place_of_birth">
 
-                                @error('pdob')
+                                @error('place_of_birth')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
+
+                                @error('date_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -58,7 +72,7 @@
                             <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone_number" type="tel" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                                <input id="phone_number" type="tel" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number" >
 
                                 @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -68,12 +82,19 @@
                             </div>
                         </div>
 
+                        {{-- gender --}}
                         <div class="form-group row">
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
-
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender">
-
+                                <div class="form-check form-check-inline" >
+                                    <input class="form-check-input" type="radio" name="gender" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Store;
+use App\DetailStore;
 
 class KostController extends Controller
 {
@@ -11,9 +13,25 @@ class KostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('kost');
+        $search = $request->input('search');
+        $store = Store::where('name', 'like', "%$search%")->paginate(2);
+        return view('kostan.kost', ['stores' => $store]);
+    }
+
+    public function sortPrice($sort)
+    {
+        $store = Store::get();
+        $sort = Store::orderBy('price', $sort)->paginate(2);
+        return view('kostan.kost', ['stores' => $sort]);
+    }
+
+    public function filterCategory($name)
+    {
+        $detail = DetailStore::where('category', $name)->first();
+        $store = Store::where('id', $detail->store_id)->get();
+        return view('kostan.kost', ['details' => $detail, 'stores' => $store]);
     }
 
     /**
@@ -43,9 +61,10 @@ class KostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show($id)
     {
-        return view('kostdetail');
+        $store = Store::find($id);
+        return view('kostan.kostdetail', ['stores' => $store]);
     }
 
     /**

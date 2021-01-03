@@ -12,25 +12,28 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'Cafe'
-        ]);
+            
+            [
+                'name' => 'Cafe'
+            ],
 
-        DB::table('categories')->insert([
-            'name' => 'Heavy Food'
-        ]);
+            [
+                'name' => 'Heavy Food'
+            ],
 
-        DB::table('categories')->insert([
-            'name' => 'Boarding House'
-        ]);
+            [
+                'name' => 'Boarding House'
+            ],
 
-        DB::table('categories')->insert([
-            'name' => 'Office Stationary'
-        ]);
+            [
+                'name' => 'Office Stationary'
+            ],
 
-        DB::table('categories')->insert([
-            'name' => 'Department Store'
-        ]);
+            [
+                'name' => 'Department Store'
+            ],
 
+        ]);
         
     }
 }

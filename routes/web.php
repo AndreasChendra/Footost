@@ -16,23 +16,23 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 //all can access
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/profile', function () {
-    return view('profile');
-});
+Route::get('/', 'HomeController@index');
+
 Route::get('/createshop', function () {
     return view('create_shop');
 });
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'UserController@index');
+Route::get('/profile', 'UserController@viewProfile');
 
 Route::get('/kost', 'KostController@index');
-Route::get('/kost/detail', 'KostController@show');
+Route::get('/kost/price/{sort}', 'KostController@sortPrice');
+Route::get('/kost/type/campur', 'KostController@index');
+Route::get('/kost/type/{name}', 'KostController@filterCategory');
+Route::get('/kost/detail/{id}', 'KostController@show');
 
-Route::get('/food&drink', 'FoodDrinkController@index');
+Route::get('/food', 'FoodDrinkController@index');
+Route::get('/food/cafe', 'FoodDrinkController@cafe');
+Route::get('/food/cafe/detail', 'FoodDrinkController@show');
 
 
 Route::group(['middleware' => ['auth', 'admin']], function(){

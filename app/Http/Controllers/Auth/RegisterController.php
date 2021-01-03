@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'place_of_birth' => ['required', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'date_format:Y-m-d', 'before:today'],
+            'phone_number' => ['required', 'min:10', 'numeric'],
+            'gender' => ['required','in:male,female'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,9 +69,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'place_of_birth' => $data['place_of_birth'],
+            'date_of_birth' => $data['date_of_birth'],
+            'phone_number' => $data['phone_number'],
+            'gender' => $data['gender'],
+            'role_id' => '2',
+            'img_profile' => 'profile.jpg',
+            'vip_expired' => Carbon::now()->modify('+1 month'),
             'password' => Hash::make($data['password']),
         ]);
     }
