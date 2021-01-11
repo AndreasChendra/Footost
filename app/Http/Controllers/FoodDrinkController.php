@@ -61,11 +61,20 @@ class FoodDrinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($cafe_id)
+    public function cafeDetail($cafe_id)
     {
         $store = Store::find($cafe_id);
+        $category = Category::where('id', 1)->first();
 
-        return view('foodndrink.cafedetail', ['stores' => $store]);
+        return view('store.store_detail', ['stores' => $store, 'category' => $category]);
+    }
+
+    public function foodDetail($food_id)
+    {
+        $store = Store::find($food_id);
+        $category = Category::where('id', 2)->first();
+
+        return view('store.store_detail', ['stores' => $store, 'category' => $category]);
     }
 
     /**

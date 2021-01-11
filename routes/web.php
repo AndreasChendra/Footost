@@ -31,14 +31,18 @@ Route::get('/kost/type/{name}', 'KostController@filterCategory');
 Route::get('/kost/detail/{kost_id}', 'KostController@show');
 
 Route::get('/food', 'FoodDrinkController@index');
-Route::get('/food/cafe', 'FoodDrinkController@cafe');
-Route::get('/food/cafe/detail/{cafe_id}', 'FoodDrinkController@show');
 
-Route::get('/food/makanan', 'FoodDrinkController@makanan');
+Route::get('/cafe', 'FoodDrinkController@cafe');
+Route::get('/cafe/detail/{cafe_id}', 'FoodDrinkController@cafeDetail');
+
+Route::get('/makanan', 'FoodDrinkController@makanan');
+Route::get('/makanan/berat/detail/{food_id}', 'FoodDrinkController@foodDetail');
 
 Route::get('/atk', 'ATKController@index');
+Route::get('/alat/tulis/kantor/detail/{atk_id}', 'ATKController@show');
 
 Route::get('/toserba', 'ToserbaController@index');
+Route::get('/toserba/detail/{toserba_id}', 'ToserbaController@show');
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     //just admin can access

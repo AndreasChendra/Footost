@@ -25,14 +25,16 @@
                             <a href="/kost/price/asc">Harga - rendah ke tinggi</a><br>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Filter</h4>
-                            <a href="/kost/type/campur">Kost Campur</a><br>
-                            <a href="/kost/type/putra">Kost Putra</a><br>
-                            <a href="/kost/type/putri">Kost Putri</a><br>
+                    @if ($category->name == 'Kost')
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Filter</h4>
+                                <a href="/kost/type/campur">Kost Campur</a><br>
+                                <a href="/kost/type/putra">Kost Putra</a><br>
+                                <a href="/kost/type/putri">Kost Putri</a><br>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -54,9 +56,16 @@
                                     <p class="card-text text-muted">{{ $store->description }}</p>
                                 </div>
                             </div>
-                            <div class="d-grid mt-3 float-right">
-                                <a href="/kost/detail/{{ $store->id }}" class="btn btn-success">Detail</a>
-                            </div>
+
+                            @if (str_contains($category->name, ' '))
+                                <div class="d-grid mt-3 float-right">
+                                    <a href="/{{ strtolower(str_slug($category->name, '/')) }}/detail/{{ $store->id }}" class="btn btn-success">Detail</a>
+                                </div>
+                            @else
+                                <div class="d-grid mt-3 float-right">
+                                    <a href="/{{ strtolower($category->name) }}/detail/{{ $store->id }}" class="btn btn-success">Detail</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endforeach

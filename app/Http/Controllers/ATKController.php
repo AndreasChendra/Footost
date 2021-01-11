@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Store;
+use App\Category;
 
 class ATKController extends Controller
 {
@@ -47,9 +48,12 @@ class ATKController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($atk_id)
     {
-        //
+        $store = Store::find($atk_id);
+        $category = Category::where('id', 4)->first();
+
+        return view('store.store_detail', ['stores' => $store, 'category' => $category]);
     }
 
     /**

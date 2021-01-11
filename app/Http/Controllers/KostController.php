@@ -68,7 +68,8 @@ class KostController extends Controller
     public function show($kost_id)
     {
         $store = Store::find($kost_id);
-        return view('kostan.kostdetail', ['stores' => $store]);
+        $category = Category::where('id', 3)->first();
+        return view('store.store_detail', ['stores' => $store, 'category' => $category]);
     }
 
     /**

@@ -34,7 +34,7 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col" style="border-radius: 20px">
-                <a href="/food/cafe">
+                <a href="/cafe">
                     <div class="card text-white mt-4 mb-4">
                         <img src="{{ asset('images/cafe.jpg') }}" class="card-img-top" height="350"
                             style="border-radius: 20px">
@@ -45,7 +45,7 @@
                 </a>
             </div>
             <div class="col" style="border-radius: 20px">
-                <a href="/food/makanan">
+                <a href="/makanan">
                     <div class="card text-white mt-4 mb-4">
                         <img src="{{ asset('images/makanan-berat.jpg') }}" class="card-img-top" height="350"
                             style="border-radius: 20px">

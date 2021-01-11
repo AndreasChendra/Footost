@@ -48,9 +48,12 @@ class ToserbaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($toserba_id)
     {
-        //
+        $store = Store::find($toserba_id);
+        $category = Category::where('id', 5)->first();
+
+        return view('store.store_detail', ['stores' => $store, 'category' => $category]);
     }
 
     /**

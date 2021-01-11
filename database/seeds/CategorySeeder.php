@@ -18,19 +18,19 @@ class CategorySeeder extends Seeder
             ],
 
             [
-                'name' => 'Heavy Food'
+                'name' => 'Makanan Berat'
             ],
 
             [
-                'name' => 'Boarding House'
+                'name' => 'Kost'
             ],
 
             [
-                'name' => 'Office Stationary'
+                'name' => 'Alat Tulis Kantor'
             ],
 
             [
-                'name' => 'Department Store'
+                'name' => 'Toserba'
             ],
 
         ]);
