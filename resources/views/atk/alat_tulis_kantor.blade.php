@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Cafe')
+@section('title', 'Alat Tulis Kantor')
 
 @section('content')
     <div class="container">
@@ -10,7 +10,7 @@
             </form>
         </div>
         <div>
-            <h1 class="text-center mt-4">Cafe</h1>
+            <h1 class="text-center mt-4">Alat Tulis Kantor</h1>
         </div>
         <div class="row">
             <div class="col">
@@ -41,12 +41,12 @@
                                     <h4 class="card-title">{{ $store->name }}</h4>
                                     <p class="card-text">Rating : 4.7 / 5</p>
                                     <p class="card-text">{{ $store->address }}</p>
-                                    <p class="card-text">Harga Rata-Rata : Rp {{ $store->price }}</p>
-                                    <p class="card-text">Jam Operasional : {{ $store->description }} (Sen-Sab)</p>
+                                    <p class="card-text">Harga : Rp {{ $store->price }}</p>
+                                    <p class="card-text">{{ $store->description }}</p>
                                 </div>
                             </div>
                             <div class="d-grid mt-3 float-right">
-                                <a href="/food/cafe/detail/{{ $store->id }}" class="btn btn-success">Detail</a>
+                                <a href="#" class="btn btn-success">Detail</a>
                             </div>
                         </div>
                     </div>

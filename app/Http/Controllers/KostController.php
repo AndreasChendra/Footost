@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Store;
-use App\DetailStore;
+use App\Category;
+use DB;
 
 class KostController extends Controller
 {
@@ -15,23 +16,26 @@ class KostController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $store = Store::where('name', 'like', "%$search%")->paginate(2);
-        return view('kostan.kost', ['stores' => $store]);
+        $category = Category::where('id', 3)->first();
+        $store = Store::where('category_id', 3)->paginate(2);
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     public function sortPrice($sort)
     {
-        $store = Store::get();
-        $sort = Store::orderBy('price', $sort)->paginate(2);
-        return view('kostan.kost', ['stores' => $sort]);
+        $category = Category::where('id', 3)->first();
+        $sort = DB::table('stores')
+                    ->where('category_id', 3)
+                    ->orderBy('price', $sort)
+                    ->paginate(2);
+        return view('store.store', ['stores' => $sort, 'category' => $category]);
     }
 
     public function filterCategory($name)
     {
-        $detail = DetailStore::where('category', $name)->first();
-        $store = Store::where('id', $detail->store_id)->get();
-        return view('kostan.kost', ['details' => $detail, 'stores' => $store]);
+        $category = Category::where('id', 3)->first();
+        $store = Store::where('type', $name)->get();
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     /**
@@ -61,9 +65,9 @@ class KostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($kost_id)
     {
-        $store = Store::find($id);
+        $store = Store::find($kost_id);
         return view('kostan.kostdetail', ['stores' => $store]);
     }
 

@@ -45,7 +45,7 @@
                 </a>
             </div>
             <div class="col" style="border-radius: 20px">
-                <a href="#">
+                <a href="/food/makanan">
                     <div class="card text-white mt-4 mb-4">
                         <img src="{{ asset('images/makanan-berat.jpg') }}" class="card-img-top" height="350"
                             style="border-radius: 20px">

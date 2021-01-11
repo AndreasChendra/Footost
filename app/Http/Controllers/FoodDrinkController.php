@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Store;
+use App\Category;
 
 class FoodDrinkController extends Controller
 {
@@ -18,7 +20,18 @@ class FoodDrinkController extends Controller
 
     public function cafe()
     {
-        return view('foodndrink.cafe');
+        $category = Category::where('id', 1)->first();
+        $store = Store::where('category_id', 1)->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
+    }
+
+    public function makanan()
+    {
+        $category = Category::where('id', 2)->first();
+        $store = Store::where('category_id', 2)->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     /**
@@ -48,9 +61,11 @@ class FoodDrinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(/*$id*/)
+    public function show($cafe_id)
     {
-        return view('foodndrink.cafedetail');
+        $store = Store::find($cafe_id);
+
+        return view('foodndrink.cafedetail', ['stores' => $store]);
     }
 
     /**

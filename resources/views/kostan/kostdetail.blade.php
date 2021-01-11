@@ -14,7 +14,7 @@
             </div>
             <div>
                 <p class="card-text">{{ $stores->address }}</p>
-                <p class="card-text">Tipe Kost : {{ $stores->detailstore->category}}</p>
+                <p class="card-text">Tipe Kost : {{ $stores->type }}</p>
                 <p class="card-text">Harga : Rp. {{ $stores->price }}/bulan</p>
                 <p class="card-text">Fasilitas : {{ $stores->description }}</p>
             </div>

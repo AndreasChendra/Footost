@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use Carbon\Carbon;
-use Auth;
+use App\Store;
+use App\Category;
 
-class UserController extends Controller
+class ToserbaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('profile');
+        $category = Category::where('id', 5)->first();
+        $store = Store::where('category_id', 5)->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     /**
@@ -83,35 +85,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function viewProfile(){
-        $user = User::select()->where('id', Auth::user()->id);
-        $nowtime = Carbon::now();
-
-        return view('profile',['users'=>$user, 'nowtime'=>$nowtime]);
-    }
-
-    public function vUpdateProfile(){
-        $user = User::find(Auth::user()->id);
-
-        return view('updateProfile',['users'=>$user]);
-    }
-
-    public function postUpdateProfile(Request $request){
-        $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'place_of_birth' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'date_format:Y-m-d', 'before:today'],
-            'phone_number' => ['required', 'min:10', 'numeric'],
-            'gender' => ['required','in:male,female'],
-            'image' => ['file', 'image', 'mimes:jpeg,png,jpg'],
-        ]);
-
-        $user = User::find(Auth::user()->id);
-
-        return redirect('/profile')
-        ->with('alert','You have successfully Update Profile.');
     }
 }

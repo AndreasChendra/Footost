@@ -1,10 +1,13 @@
 @extends('layouts.app')
+@section('title', 'Profile')
 
 @section('content')
     <div class="container">
         <div>
             <h1  class="text-center">Profile</h1>
             <a href="" style="font-size: 18px">Change Password</a>
+            <br>
+            <a href="/createshop" style="font-size: 18px">Create Own Store</a>
             <div class="row  justify-content-center">
                 <div class="card pt-4" style="width: 50rem">
                     <div class="row px-5 ml-3">
@@ -15,7 +18,7 @@
                             <strong><p style="font-size: 25px">{{Auth::user()->name}}</p></strong>
                         </div>
                         <div class="col-md-4 mt-4">
-                           <a href="" style="font-size: 18px">Update Profile</a>
+                           <a href="/updateProfile" style="font-size: 18px">Update Profile</a>
                         </div>
                     </div>
                     <div class="row px-5 ml-4">
@@ -63,6 +66,15 @@
                             @endif
                         </div>
                     </div>                                       
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            @if (session('alert'))
+                            <div class="alert alert-success">
+                                {{ session('alert') }}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

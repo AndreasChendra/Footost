@@ -5,17 +5,17 @@
     <div class="container mt-4">
         <div class="row row-cols-2">
         <div class="col">
-            <img src="{{asset('images/fnb/starbucks.jpg')}}" width="100%" height="500">
+            <img src="{{ asset($stores->picture) }}" width="100%" height="500">
         </div>
         <div class="col">
             <div class="row row-cols-2">
-                <div class="col"><h3>Starbucks Coffee Binus</h3></div>
+                <div class="col"><h3>{{ $stores->name }}</h3></div>
                 <div class="col text-end"><p>Rating : 4.7 / 5</p></div>
             </div>
             <div>
-                <p>(Address)</p>
-                <p>Harga Rata-Rata : Rp 50.000</p>
-                <p>Jam Operasional : 07.00-20.00 (Sen-Sab)</p>
+                <p>{{ $stores->address }}</p>
+                <p>Harga Rata-Rata : Rp {{ $stores->price }}</p>
+                <p>Jam Operasional : {{ $stores->description }} (Sen-Sab)</p>
             </div>
             <div class="mt-3">
                 <p>

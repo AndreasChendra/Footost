@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kost')
+@section('title', "$category->name")
 
 @section('content')
     <div class="container">
@@ -10,7 +10,7 @@
             </form>
         </div>
         <div>
-            <h1 class="text-center mt-4">Kostan</h1>
+            <h1 class="text-center mt-4">{{ $category->name }}</h1>
         </div>
         <div class="row">
             <div class="col">

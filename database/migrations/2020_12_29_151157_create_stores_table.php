@@ -20,6 +20,7 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->string('picture');
             $table->string('address');
+            $table->string('type');
             $table->text('description');
             $table->string('price');
             $table->timestamps();

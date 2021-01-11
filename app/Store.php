@@ -8,8 +8,8 @@ class Store extends Model
 {
     protected $table = 'stores';
 
-    public function detailstore()
+    public function category()
     {
-        return $this->hasOne('App\DetailStore');
+        return $this->belongsTo('App\Categories');
     }
 }

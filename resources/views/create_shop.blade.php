@@ -43,7 +43,12 @@
                             <label for="shop_category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
                             <div class="col-md-6">
-                                <input id="shop_category" type="text" class="form-control @error('shop_category') is-invalid @enderror" name="shop_category" value="{{ old('shop_category') }}" required autocomplete="shop_category">
+                                <select name="category" id="category">
+                                @foreach ($categories as $c)
+                                    <option value={{ $c->name }}>{{ $c->name }}</option>
+                                @endforeach
+                                </select>
+                                {{-- <input id="shop_category" type="text" class="form-control @error('shop_category') is-invalid @enderror" name="shop_category" value="{{ old('shop_category') }}" required autocomplete="shop_category"> --}}
 
                                 @error('shop_category')
                                     <span class="invalid-feedback" role="alert">

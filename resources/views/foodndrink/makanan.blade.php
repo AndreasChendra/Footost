@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Cafe')
+@section('title', 'Makanan Berat')
 
 @section('content')
     <div class="container">
@@ -10,7 +10,7 @@
             </form>
         </div>
         <div>
-            <h1 class="text-center mt-4">Cafe</h1>
+            <h1 class="text-center mt-4">Makanan Berat</h1>
         </div>
         <div class="row">
             <div class="col">
