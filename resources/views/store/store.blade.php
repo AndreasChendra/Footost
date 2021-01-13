@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', "$category->name")
+@section('title', "$category->name - Footost")
 
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-end mt-3 mb-3">
-            <form class="d-flex">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search" value="{{ Request::input('search') }}" aria-label="Search">
+            <form class="d-flex" action="/search/{{ $category->id }}" method="GET">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" value="{{ old('search') }}" aria-label="Search">
                 <button class="btn btn-success" type="submit">Search</button>
             </form>
         </div>
@@ -21,8 +21,13 @@
                             <a href="#">Popularitas</a><br>
                             <a href="#">Rating - tinggi ke rendah</a><br>
                             <a href="#">Rating - rendah ke tinggi</a><br>
-                            <a href="/kost/price/desc">Harga - tinggi ke rendah</a><br>
-                            <a href="/kost/price/asc">Harga - rendah ke tinggi</a><br>
+                            @if (str_contains($category->name, ' '))
+                                <a href="/{{ strtolower(str_slug($category->name, '/')) }}/price/desc">Harga - tinggi ke rendah</a><br>
+                                <a href="/{{ strtolower(str_slug($category->name, '/')) }}/price/asc">Harga - rendah ke tinggi</a><br>
+                            @else
+                                <a href="/{{ strtolower($category->name) }}/price/desc">Harga - tinggi ke rendah</a><br>
+                                <a href="/{{ strtolower($category->name) }}/price/asc">Harga - rendah ke tinggi</a><br>
+                            @endif
                         </div>
                     </div>
                     @if ($category->name == 'Kost')
@@ -50,10 +55,25 @@
                                     <a href=""></a>
                                     <h4 class="card-title">{{ $store->name }}</h4>
                                     <p class="card-text">Rating : 4.1 / 5</p>
-                                    <p class="card-text">{{ $store->address }}</p>
-                                    <p class="card-text">Tipe Kost : {{ $store->type }}</p>
-                                    <p class="card-text">Harga : Rp. {{ $store->price }}/bulan</p>
-                                    <p class="card-text text-muted">{{ $store->description }}</p>
+                                    <p class="card-text">Address : {{ $store->address }}</p>
+                                    @if ($category->name == 'Kost')
+                                        <p class="card-text">Tipe Kost : {{ $store->type }}</p>
+                                        <p class="card-text">Harga : Rp. {{ $store->price }} / bulan</p>
+                                    @endif
+                                    @if ($category->name == 'Makanan Berat' 
+                                            || $category->name == 'Alat Tulis Kantor'
+                                            || $category->name == 'Toserba')
+                                        <p class="card-text">Harga : Rp. {{ $store->price }}</p>
+                                    @endif
+                                    @if ($category->name == 'Cafe')  
+                                        <p class="card-text">Harga rata-rata : Rp. {{ $store->price }}</p>
+                                        <p class="card-text">Jam Operasional : {{ $store->description }}
+                                            <br>
+                                            (Senin - Sabtu)
+                                        </p>
+                                    @else
+                                        <p class="card-text text-muted">{{ $store->description }}</p>
+                                    @endif
                                 </div>
                             </div>
 

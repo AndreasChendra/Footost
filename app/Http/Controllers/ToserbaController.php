@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Store;
 use App\Category;
 
@@ -19,6 +20,16 @@ class ToserbaController extends Controller
         $store = Store::where('category_id', 5)->get();
 
         return view('store.store', ['stores' => $store, 'category' => $category]);
+    }
+
+    public function sortToserbaPrice($sort)
+    {
+        $category = Category::where('id', 5)->first();
+        $sort = DB::table('stores')
+                    ->where('category_id', 5)
+                    ->orderBy('price', $sort)
+                    ->paginate(2);
+        return view('store.store', ['stores' => $sort, 'category' => $category]);
     }
 
     /**

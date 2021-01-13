@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', "$category->name Detail")
+@section('title', "$category->name Detail - Footost")
 
 @section('content')
     <div class="container mt-4">
@@ -16,7 +16,13 @@
                 <p class="card-text">{{ $stores->address }}</p>
                 <p class="card-text">Tipe Kost : {{ $stores->type }}</p>
                 <p class="card-text">Harga : Rp. {{ $stores->price }}/bulan</p>
-                <p class="card-text">Fasilitas : {{ $stores->description }}</p>
+                @if ($category->name == 'Cafe')
+                    <p class="card-text">Jam Operasional : {{ $stores->description }} (Senin - Sabtu)</p>
+                @elseif ($category->name == 'Kost')
+                    <p class="card-text">Fasilitas : {{ $stores->description }}</p>
+                @else
+                    <p class="card-text">Description : {{ $stores->description }}</p>
+                @endif
             </div>
             <div class="mt-3">
                 <p>

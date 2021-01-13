@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="{{ asset('images/logo_black.png') }}" type="image/icon type">
     <title>@yield('title')</title>
 
     <!-- Scripts -->
@@ -71,12 +72,27 @@
                                     <form id="profile-form" action="/profile" method="GET" class="d-none">
                                         @csrf
                                     </form>
+                                    @if (Auth::user()->role_id == 2)
                                     {{-- kalau ada shop tampilin my shop --}}
                                     <a class="dropdown-item" href=""
                                        onclick="event.preventDefault();
                                                      document.getElementById().submit();">
                                         My Shop
                                     </a>
+                                    @endif
+                                    
+                                    {{-- admin view all user --}}
+                                    @if (Auth::user()->role_id == 1)
+                                    <a class="dropdown-item" href="/viewAllUser"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('viewAllUser').submit();">
+                                        View All User
+                                    </a>
+
+                                    <form id="viewAllUser" action="/viewAllUser" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -21,7 +21,7 @@ class KostController extends Controller
         return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
-    public function sortPrice($sort)
+    public function sortKostPrice($sort)
     {
         $category = Category::where('id', 3)->first();
         $sort = DB::table('stores')

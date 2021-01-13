@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Store;
 use App\Category;
 
@@ -19,6 +20,16 @@ class ATKController extends Controller
         $store = Store::where('category_id', 4)->get();
 
         return view('store.store', ['stores' => $store, 'category' => $category]);
+    }
+
+    public function sortATKPrice($sort)
+    {
+        $category = Category::where('id', 4)->first();
+        $sort = DB::table('stores')
+                    ->where('category_id', 4)
+                    ->orderBy('price', $sort)
+                    ->paginate(2);
+        return view('store.store', ['stores' => $sort, 'category' => $category]);
     }
 
     /**
