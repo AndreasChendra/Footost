@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('images/logo_black.png') }}" type="image/icon type">
+    <link rel="icon" href="{{ asset('images/app/logo_black.png') }}" type="image/icon type">
     <title>@yield('title')</title>
 
     <!-- Scripts -->
@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="text-center">
                 <div class="bannertext">
-                    <img class="bgbanner" src="/images/banner.jpg" alt="banner">
+                    <img class="bgbanner" src="/images/app/banner.jpg" alt="banner">
                     <div class="bannertext" style="position: absolute; top: 20px; right: 16px;">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
@@ -50,8 +50,8 @@
                             @else
                                 <li class="nav-item dropdown" style="position: absolute; right: 5%; top: 30%;">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img src="/images/{{Auth::user()->img_profile}}" alt="" style="border-radius: 50%" width="35px" height="35px">
-                                        <span class="pl-4" style="font-size: 20px; color: white;">
+                                        <img src="{{Auth::user()->img_profile}}" alt="" style="border-radius: 50%" width="35px" height="35px">
+                                        <span class="pl-2" style="font-size: 20px; color: white;">
                                             {{ Auth::user()->name }}
                                         </span>
                                     </a>
@@ -67,11 +67,11 @@
                                             @csrf
                                         </form>
                                         @if (Auth::user()->role_id == 2)
-                                        {{-- kalau ada shop tampilin my shop --}}
+                                        {{-- kalau ada shop tampilin my store --}}
                                         <a class="dropdown-item" href=""
                                            onclick="event.preventDefault();
                                                          document.getElementById().submit();">
-                                            My Shop
+                                            My Store
                                         </a>
                                         @endif
 

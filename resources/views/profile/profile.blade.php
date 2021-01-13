@@ -16,7 +16,7 @@
                     </div>
                     @if (Auth::user()->role_id == 2)
                     <div class="pl-2 pr-2">
-                        <a href="/createshop" style="font-size: 18px">
+                        <a href="/create/store" style="font-size: 18px">
                             <button type="button" class="btn btn-success">
                             Create Own Store
                             </button>
@@ -28,7 +28,7 @@
                     <div class="card pt-4" style="width: 50rem">
                         <div class="row px-5 ml-3">
                             <div class="col-md-4">
-                                <img src="/images/{{Auth::user()->img_profile}}" alt="" width="100px" height="100px" style="border-radius: 50%">
+                                <img src="{{Auth::user()->img_profile}}" alt="User Profile" width="100px" height="100px" style="border-radius: 50%">
                             </div>
                             <div class="col-md-4 mt-4">
                                 <strong><p style="font-size: 25px">{{Auth::user()->name}}</p></strong>

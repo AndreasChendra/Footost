@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('images/logo_black.png') }}" type="image/icon type">
+    <link rel="icon" href="{{ asset('images/app/logo_black.png') }}" type="image/icon type">
     <title>@yield('title')</title>
 
     <!-- Scripts -->
@@ -24,14 +24,11 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
-            <img class="bgbanner" src="/images/header.jpg" alt="header">
+            <img class="bgbanner" src="/images/app/header.jpg" alt="header">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                    <span class="bannertext" style="position: absolute; left: 8%; top: 20%; font-style: italic; font-size: 36px;">Footost</span> 
                 </a>
-                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -56,8 +53,8 @@
                         @else
                             <li class="nav-item dropdown" style="position: absolute; right: 5%; top: 30%;">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="/images/profile.jpg" alt="" style="border-radius: 50%" width="35px" height="35px">
-                                    <span class="pl-4" style="font-size: 20px; color: white;">
+                                    <img src="{{ Auth::user()->img_profile }}" alt="" style="border-radius: 50%" width="35px" height="35px">
+                                    <span class="pl-2" style="font-size: 20px; color: white;">
                                         {{ Auth::user()->name }}
                                     </span>
                                 </a>
@@ -73,11 +70,11 @@
                                         @csrf
                                     </form>
                                     @if (Auth::user()->role_id == 2)
-                                    {{-- kalau ada shop tampilin my shop --}}
+                                    {{-- kalau ada shop tampilin my store --}}
                                     <a class="dropdown-item" href=""
                                        onclick="event.preventDefault();
                                                      document.getElementById().submit();">
-                                        My Shop
+                                        My Store
                                     </a>
                                     @endif
                                     
@@ -114,5 +111,9 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="assets/js/jquery.js"></script> 
+	<script src="assets/js/popper.js"></script> 
+	<script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::paginate(6);
 
         return view('viewAllUser',['users'=>$user]);
     }
@@ -89,7 +89,7 @@ class UserController extends Controller
     }
 
     public function viewProfile(){
-        $user = User::select()->where('id', Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         $nowtime = Carbon::now();
 
         return view('profile.profile',['users'=>$user, 'nowtime'=>$nowtime]);
@@ -125,9 +125,9 @@ class UserController extends Controller
             $file = $request->file('img_profile');
             $nama_file = time()."_".$file->getClientOriginalName();
     
-            $tujuan_upload = 'images';
+            $tujuan_upload = 'images/profile/';
             $file->move($tujuan_upload,$nama_file);
-            $user->img_profile = $nama_file;
+            $user->img_profile = 'images/profile/'.$nama_file;
         }
 
         $user->save();

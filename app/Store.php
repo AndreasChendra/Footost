@@ -8,8 +8,8 @@ class Store extends Model
 {
     protected $table = 'stores';
 
-    public function category()
+    public function review()
     {
-        return $this->belongsTo('App\Categories');
+        return $this->hasMany(Review::class);
     }
 }

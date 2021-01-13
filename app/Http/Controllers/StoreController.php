@@ -10,6 +10,6 @@ class StoreController extends Controller
     public function createStoreView(){
         $category = Category::all();
 
-        return view('shop.create_shop',['categories'=>$category]);
+        return view('store.create_store',['categories'=>$category]);
     }
 }

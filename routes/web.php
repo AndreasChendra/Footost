@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index');
 // Route::get('/createshop', function () {
 //     return view('create_shop');
 // });
-Route::get('/createshop', 'StoreController@createStoreView');
+Route::get('/create/store', 'StoreController@createStoreView');
 
 Route::get('/search/{category_id}', 'HomeController@search');
 

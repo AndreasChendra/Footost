@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'gender' => $data['gender'],
             'role_id' => '2',
-            'img_profile' => 'profile.jpg',
+            'img_profile' => 'images/profile/profile.jpg',
             'vip_expired' => Carbon::now()->modify('+1 month'),
             'password' => Hash::make($data['password']),
         ]);
