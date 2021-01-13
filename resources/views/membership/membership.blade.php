@@ -51,7 +51,7 @@
   
           <div class="row justify-content-center mt-4">
   
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
               <div class="box">
                 <h3>Gratis</h3>
                 <h4><sup>Rp.</sup>0<span> / bulan</span></h4>
@@ -67,7 +67,7 @@
               </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
               <div class="box">
                 <h3>Coba-Coba</h3>
                 <h4><sup>Rp.</sup>15.000<span> / bulan</span></h4>
@@ -83,11 +83,11 @@
               </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
               <div class="box">
                 <span class="advanced">Terlaris</span>
                 <h3>Anggota</h3>
-                <h4><sup>Rp.</sup>25.000<span> / 2 bulan</span></h4>
+                <h4><sup>Rp.</sup>150.000<span> / tahun</span></h4>
                 <ul>
                   <li>Melihat info tempat yang ada disekitar</li>
                   <li>Mendapatkan info promo</li>
