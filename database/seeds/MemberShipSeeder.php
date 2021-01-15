@@ -15,31 +15,31 @@ class MemberShipSeeder extends Seeder
 
             [
                 'name' => 'Capable',
-                'duration' => '1 Month',
+                'duration' => '1',
                 'price' => '25000'
             ],
 
             [
                 'name' => 'Regular',
-                'duration' => '3 Month',
+                'duration' => '3',
                 'price' => '75000'
             ],
 
             [
                 'name' => 'Medium',
-                'duration' => '5 Month',
+                'duration' => '5',
                 'price' => '100000'
             ],
 
             [
                 'name' => 'Special',
-                'duration' => '9 Month',
+                'duration' => '9',
                 'price' => '150000'
             ],
 
             [
                 'name' => 'Expert',
-                'duration' => '12 Month',
+                'duration' => '12',
                 'price' => '200000'
             ],
 

@@ -22,7 +22,6 @@ Route::get('/home', 'HomeController@index');
 // Route::get('/createshop', function () {
 //     return view('create_shop');
 // });
-Route::get('/create/store', 'StoreController@createStoreView');
 
 Route::get('/search/{category_id}', 'HomeController@search');
 
@@ -55,16 +54,34 @@ Route::get('/toserba/detail/{toserba_id}', 'ToserbaController@show');
 Route::get('/resetPass', 'UserController@vresetPassword');
 Route::post('/resetPass', 'UserController@resetPassword');
 
+//Membership
+Route::get('/membership', 'TransactionController@membership');
+
+
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     //just admin can access
     Route::get('/viewAllUser', 'UserController@index');
+    Route::get('/viewAllTransaction', 'TransactionController@index');
     
 });
 
 
 Route::group(['middleware' => ['auth', 'member']], function(){
     //just member can access
+    Route::get('/viewTransactionHistory', 'TransactionController@userindex');
+    Route::post('/pay', 'TransactionController@receipt');
+    Route::get('/pay', 'TransactionController@membership');
+    Route::post('/paymentSuccess', 'TransactionController@newTransaction');
+    
+    Route::get('/mystore/{user_id}', 'StoreController@vUserStore');
+    Route::get('/mystore/update/{store_id}', 'StoreController@vUpdateStore');
+    Route::put('/updatestore/{store_id}/{category_id}', 'StoreController@updateStore');
+    Route::delete('/mystore/delete/{store_id}', 'StoreController@dUserStore');
+    Route::get('/mystore/detail/{store_id}', 'StoreController@detailStore');
+
+    Route::get('/create/store', 'StoreController@createStoreView');
+    Route::post('/createstore', 'StoreController@createStore');
     
 });
 
@@ -76,5 +93,4 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/updateProfile', 'UserController@postUpdateProfile');
     Route::get('/changePass', 'UserController@vchangePassword');
     Route::post('/changePass', 'UserController@changePassword');
-    
 });

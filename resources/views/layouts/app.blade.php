@@ -40,6 +40,14 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-item" style="position: absolute; right: 27%; top: 30%; ">
+                                <a class="nav-link" href="/promo">
+                                    <span style="font-size: 20px; color: white;">{{ __('Promo') }}</span></a>
+                            </li>
+                            <li class="nav-item" style="position: absolute; right: 18%; top: 30%; ">
+                                <a class="nav-link" href="/membership">
+                                    <span style="font-size: 20px; color: white;">{{ __('Membership') }}</span></a>
+                            </li>
                             <li class="nav-item" style="position: absolute; right: 12%; top: 30%; ">
                                 <a class="nav-link" href="{{ route('login') }}">
                                     <span style="font-size: 18px; color: white;">{{ __('Login') }}</span></a>
@@ -51,9 +59,17 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item" style="position: absolute; right: 25%; top: 30%; ">
+                                <a class="nav-link" href="/promo">
+                                    <span style="font-size: 18px; color: white;">{{ __('Promo') }}</span></a>
+                            </li>
+                            <li class="nav-item" style="position: absolute; right: 16%; top: 30%; ">
+                                <a class="nav-link" href="/membership">
+                                    <span style="font-size: 18px; color: white;">{{ __('Membership') }}</span></a>
+                            </li>
                             <li class="nav-item dropdown" style="position: absolute; right: 5%; top: 30%;">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ Auth::user()->img_profile }}" alt="" style="border-radius: 50%" width="35px" height="35px">
+                                    <img src="{{ asset(Auth::user()->img_profile) }}" alt="" style="border-radius: 50%" width="35px" height="35px">
                                     <span class="pl-2" style="font-size: 20px; color: white;">
                                         {{ Auth::user()->name }}
                                     </span>
@@ -70,16 +86,35 @@
                                         @csrf
                                     </form>
                                     @if (Auth::user()->role_id == 2)
-                                    {{-- kalau ada shop tampilin my store --}}
-                                    <a class="dropdown-item" href=""
-                                       onclick="event.preventDefault();
-                                                     document.getElementById().submit();">
-                                        My Store
-                                    </a>
+                                        {{-- kalau ada shop tampilin my store --}}
+                                        <a class="dropdown-item" href=""
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('viewMyStore').submit();">
+                                            My Store
+                                        </a>
+
+                                        <form id="viewMyStore" action="/mystore/{{ Auth::user()->id }}" method="GET" class="d-none">
+                                            @csrf
+                                        </form>
+
+                                        <form id="" action="/" method="GET" class="d-none">
+                                            @csrf
+                                        </form>
+
+                                        {{-- user view transaction history--}}
+                                        <a class="dropdown-item" href="/viewTransactionHistory"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('viewTransactionHistory').submit();">
+                                            View Transaction History
+                                        </a>
+
+                                        <form id="viewTransactionHistory" action="/viewTransactionHistory" method="GET" class="d-none">
+                                            @csrf
+                                        </form>
                                     @endif
                                     
-                                    {{-- admin view all user --}}
                                     @if (Auth::user()->role_id == 1)
+                                    {{-- admin view all user --}}
                                     <a class="dropdown-item" href="/viewAllUser"
                                     onclick="event.preventDefault();
                                                     document.getElementById('viewAllUser').submit();">
@@ -87,6 +122,17 @@
                                     </a>
 
                                     <form id="viewAllUser" action="/viewAllUser" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    {{-- admin view all transaction --}}
+                                    <a class="dropdown-item" href="/viewAllTransaction"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('viewAllTransaction').submit();">
+                                        View All Transaction
+                                    </a>
+
+                                    <form id="viewAllTransaction" action="/viewAllTransaction" method="GET" class="d-none">
                                         @csrf
                                     </form>
                                     @endif

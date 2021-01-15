@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $user = User::paginate(6);
 
-        return view('viewAllUser',['users'=>$user]);
+        return view('user.viewAllUser',['users'=>$user]);
     }
 
     /**

@@ -104,3 +104,10 @@
     background: #d9232d;
     color: #fff;
 }
+
+.position-empty {
+    padding-top: 200px;
+    padding-bottom: 205px;
+    font-size: 30px;
+    text-align: center;
+}

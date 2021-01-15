@@ -1,106 +1,73 @@
 @extends('layouts.app')
+@section('title', 'Membership - Footost')
 
 @section('content')
     <div class="container mt-3">
         <div>
             <h1>Membership</h1>
         </div>
-        {{-- <div class="row mt-3">
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h3 class="card-title">Gratis</h3>
-                  <h4 class="card-text">Rp. 0 / bulan</h4>
-                  <li class="card-text">Melihat info tempat yang ada disekitar</li>
-                  <li class="card-text">Mendapatkan info promo</li>
-                  <li class="card-text text-muted">Mendapatkan voucher diskon</li>
-                  <li class="card-text text-muted">Mendapatkan merchandise*</li>
-                  <a href="#" class="btn btn-danger mt-2">Daftar Sekarang</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Coba-Coba</h3>
-                    <h4 class="card-text">Rp. 15.000 / bulan</h4>
-                    <li class="card-text">Melihat info tempat yang ada disekitar</li>
-                    <li class="card-text">Mendapatkan info promo</li>
-                    <li class="card-text">Mendapatkan voucher diskon</li>
-                    <li class="card-text">Mendapatkan merchandise*</li>
-                    <a href="#" class="btn btn-success mt-2">Gabung Sekarang</a>
-                  </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Anggota</h3>
-                    <h4 class="card-text">Rp. 25.000 / 2 bulan</h4>
-                    <li class="card-text">Melihat info tempat yang ada disekitar</li>
-                    <li class="card-text">Mendapatkan info promo</li>
-                    <li class="card-text">Mendapatkan voucher diskon</li>
-                    <li class="card-text">Mendapatkan merchandise*</li>
-                    <a href="#" class="btn btn-success mt-2">Gabung Sekarang</a>
-                  </div>
-                </div>
-            </div>
-        </div> --}}
-
         <div class="pricing">
-  
-          <div class="row justify-content-center mt-4">
-  
-            <div class="col-lg-4 col-md-6">
-              <div class="box">
-                <h3>Gratis</h3>
-                <h4><sup>Rp.</sup>0<span> / bulan</span></h4>
-                <ul>
-                  <li>Melihat info tempat yang ada disekitar</li>
-                  <li>Mendapatkan info promo</li>
-                  <li class="na">Mendapatkan voucher diskon</li>
-                  <li class="na">Mendapatkan merchandise*</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Daftar Sekarang</a>
-                </div>
-              </div>
+            <div class="row justify-content-center mt-4">
+                @if (Auth::check())
+                @else
+                    <div class="col-lg-4 col-md-6">
+                        <div class="box">
+                            <h3>Free</h3>
+                            <h4><sup>Rp.</sup>0<span> / bulan</span></h4>
+                            <ul>
+                                <li>See information for nearby places</li>
+                                <li>Got promo information</li>
+                                <li>Register own store</li>
+                                <li>Store can access all user</li>
+                                <li class="na">Got discount voucher</li>
+                                <li class="na">Got marchandise*</li>
+                                <li class="na">Promote store</li>
+                                <li class="na">Make a store promotion</li>
+                            </ul>
+                            <div class="btn-wrap">
+                                <a href="/register">
+                                    <button type="submit" class="btn-buy">Join Now</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @foreach ($memberships as $m)
+                    <div class="col-lg-4 col-md-6 pb-5">
+                        <div class="box">
+                            <h3>{{ $m->name }}</h3>
+                            @if ($m->name == 'Expert')
+                                <span class="advanced">Best Seller</span>
+                            @endif
+
+                            <h4><sup>Rp.</sup>{{ $m->price }}<span> / {{ $m->duration }} Month</span></h4>
+                            <ul>
+                                <li>See information for nearby places</li>
+                                <li>Got promo information</li>
+                                <li>Register own store</li>
+                                <li>Store can access all user</li>
+                                <li>Got discount voucher</li>
+                                <li>Got marchandise*</li>
+                                <li>Promote store</li>
+                                <li>Make a store promotion</li>
+                            </ul>
+                            <div class="btn-wrap">
+                                <form action="/pay" method="post">
+                                    @csrf
+                                    <div>
+                                        <input type="hidden" value="{{ $m->id }}" name="id">
+                                        <button type="submit" class="btn-buy">
+                                            {{ __('Get Membership') }}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
 
-            <div class="col-lg-4 col-md-6">
-              <div class="box">
-                <h3>Coba-Coba</h3>
-                <h4><sup>Rp.</sup>15.000<span> / bulan</span></h4>
-                <ul>
-                  <li>Melihat info tempat yang ada disekitar</li>
-                  <li>Mendapatkan info promo</li>
-                  <li>Mendapatkan voucher diskon</li>
-                  <li>Mendapatkan merchandise*</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Gabung Sekarang</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="box">
-                <span class="advanced">Terlaris</span>
-                <h3>Anggota</h3>
-                <h4><sup>Rp.</sup>150.000<span> / tahun</span></h4>
-                <ul>
-                  <li>Melihat info tempat yang ada disekitar</li>
-                  <li>Mendapatkan info promo</li>
-                  <li>Mendapatkan voucher diskon</li>
-                  <li>Mendapatkan merchandise*</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Gabung Sekarang</a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
         </div>
     </div>
 @endsection
