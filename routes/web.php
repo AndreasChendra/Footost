@@ -19,13 +19,10 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-// Route::get('/createshop', function () {
-//     return view('create_shop');
-// });
-
 Route::get('/search/{category_id}', 'HomeController@search');
 
 Route::get('/kost', 'KostController@index');
+Route::get('/kost/rating/{sort}', 'KostController@sortKostRating');
 Route::get('/kost/price/{sort}', 'KostController@sortKostPrice');
 Route::get('/kost/type/campur', 'KostController@index');
 Route::get('/kost/type/{name}', 'KostController@filterCategory');
@@ -49,7 +46,6 @@ Route::get('/toserba', 'ToserbaController@index');
 Route::get('/toserba/price/{sort}', 'ToserbaController@sortToserbaPrice');
 Route::get('/toserba/detail/{toserba_id}', 'ToserbaController@show');
 
-
 //ResetPassword
 Route::get('/resetPass', 'UserController@vresetPassword');
 Route::post('/resetPass', 'UserController@resetPassword');
@@ -57,6 +53,8 @@ Route::post('/resetPass', 'UserController@resetPassword');
 //Membership
 Route::get('/membership', 'TransactionController@membership');
 
+//Promo
+Route::get('/promo', 'PromoController@index');
 
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
@@ -64,14 +62,21 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/viewAllUser', 'UserController@index');
     Route::get('/viewAllTransaction', 'TransactionController@index');
     
+    //Promo
+    Route::get('/allPromo', 'PromoController@indexall');
+    Route::get('/addPromo', 'PromoController@vAddPromo');
+    Route::post('/addPromo', 'PromoController@addPromo');
+    Route::get('/editPromo', 'PromoController@index');
+    Route::post('/editPromo', 'PromoController@veditPromo');
+    Route::post('/editedPromo', 'PromoController@editPromo');
 });
 
 
 Route::group(['middleware' => ['auth', 'member']], function(){
     //just member can access
     Route::get('/viewTransactionHistory', 'TransactionController@userindex');
-    Route::post('/pay', 'TransactionController@receipt');
     Route::get('/pay', 'TransactionController@membership');
+    Route::post('/pay', 'TransactionController@receipt');
     Route::post('/paymentSuccess', 'TransactionController@newTransaction');
     
     Route::get('/mystore/{user_id}', 'StoreController@vUserStore');
@@ -82,6 +87,11 @@ Route::group(['middleware' => ['auth', 'member']], function(){
 
     Route::get('/create/store', 'StoreController@createStoreView');
     Route::post('/createstore', 'StoreController@createStore');
+
+    Route::get('/feedback/{store_id}', 'ReviewController@index');
+    Route::post('/send/feedback/{store_id}', 'ReviewController@feedback');
+
+    Route::get('/review/{store_id}', 'ReviewController@vReviewStore');
     
 });
 

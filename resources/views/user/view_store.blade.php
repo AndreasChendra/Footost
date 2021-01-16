@@ -29,7 +29,7 @@
                         <div class="col">
                             <div class="card-block px-2">
                                 <h2 class="card-title">{{ $store->name }}</h2>
-                                <p class="card-text">Rating : 4.7 / 5</p>
+                                <p class="card-text">Rating : {{ number_format($store->review->avg('rating')) }} / 5</p>
                                 <p class="card-text">Address : {{ $store->address }}</p>
                                 <p class="card-text">Price : {{ $store->price }}</p>
                                 <p class="card-text">{{ $store->description }}</p>

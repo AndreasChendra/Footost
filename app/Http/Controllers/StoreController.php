@@ -7,6 +7,7 @@ use App\Category;
 use App\Store;
 use App\Review;
 use Auth;
+use File;
 
 class StoreController extends Controller
 {
@@ -80,6 +81,7 @@ class StoreController extends Controller
     {
         $store = Store::findOrFail($store_id);
         $review = Review::where('store_id', $store->id)->get();
+        File::delete($store->picture);
         $review->each->delete();
         $store->delete();
         return back();

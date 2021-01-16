@@ -13,9 +13,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="text-center pb-3">
+                            <h1>{{ Auth::user()->name }} Transaction</h1>
+                        </div>
+
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table table-hover text-center" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Transaction ID</th>

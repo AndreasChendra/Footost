@@ -9,21 +9,6 @@ use App\Category;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('home');
@@ -33,11 +18,10 @@ class HomeController extends Controller
     {
         $search = $request->search;
         $category = Category::where('id', $category_id)->first();
-        $store = DB::table('stores')
-                    ->where('category_id', $category_id)
+        $store = Store::where('category_id', $category_id)
                     ->where('name', 'like', "%$search%")
-                    ->paginate();
-
+                    ->get();
+        
         return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 }

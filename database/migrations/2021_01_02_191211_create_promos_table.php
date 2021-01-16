@@ -15,14 +15,10 @@ class CreatePromosTable extends Migration
     {
         Schema::create('promos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('store_id')->unsigned();
-            $table->string('name');
+            $table->string('title');
             $table->text('description');
-            $table->string('type');
-            $table->date('start_date');
+            $table->text('termncon');
             $table->date('end_date');
-
-            $table->foreign('store_id')->references('id')->on('stores');
         });
     }
 

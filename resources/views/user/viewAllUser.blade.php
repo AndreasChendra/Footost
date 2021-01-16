@@ -3,9 +3,9 @@
 
 @section('content')
     <div class="container">
-        <div class="container pt-5 pl-5 pr-5">
+        <div class="container pt-3 pl-5 pr-5">
             <div>
-                <h1>All User</h1>
+                <h1 class="text-center mb-4">All User</h1>
             </div>
             <div class="row row-cols-1 row-cols-md-3 justify-content-center">
 

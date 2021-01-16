@@ -18,7 +18,7 @@
                 <div class="col pizza-detail font-style">
 
                     <h2>{{ $stores->name }}</h2>
-                    <p class="font-weight-bold my-3" style="color: goldenrod">Rating : 4.7 / 5</p>
+                    <p class="font-weight-bold my-3" style="color: goldenrod">Rating : {{ number_format($stores->review->avg('rating')) }} / 5</p>
                     <p>{{ $stores->address }}</p>
                     <p>Harga : Rp {{ $stores->price }}</p>
                     <p>{{ $stores->description }}</p>

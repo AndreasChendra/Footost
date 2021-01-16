@@ -19,8 +19,15 @@
                         <div class="card-body">
                             <h4 class="card-title">Urutkan</h4>
                             <a href="#">Popularitas</a><br>
-                            <a href="#">Rating - tinggi ke rendah</a><br>
-                            <a href="#">Rating - rendah ke tinggi</a><br>
+                            @if (str_contains($category->name, ' '))
+                                <a href="/{{ strtolower(str_slug($category->name, '/')) }}/rating/desc">Rating - tinggi ke rendah</a><br>
+                                <a href="/{{ strtolower(str_slug($category->name, '/')) }}/rating/asc">Rating - rendah ke tinggi</a><br>
+                            @else
+                                <a href="/{{ strtolower($category->name) }}/rating/desc">Rating - tinggi ke rendah</a><br>
+                                <a href="/{{ strtolower($category->name) }}/rating/asc">Rating - rendah ke tinggi</a><br>
+                            @endif
+                            {{-- <a href="#">Rating - tinggi ke rendah</a><br>
+                            <a href="#">Rating - rendah ke tinggi</a><br> --}}
                             @if (str_contains($category->name, ' '))
                                 <a href="/{{ strtolower(str_slug($category->name, '/')) }}/price/desc">Harga - tinggi ke rendah</a><br>
                                 <a href="/{{ strtolower(str_slug($category->name, '/')) }}/price/asc">Harga - rendah ke tinggi</a><br>
@@ -54,7 +61,7 @@
                                 <div class="col-md-8 px-5">
                                     <a href=""></a>
                                     <h4 class="card-title">{{ $store->name }}</h4>
-                                    <p class="card-text">Rating : 4.1 / 5</p>
+                                    <p class="card-text">Rating : {{ number_format($store->review->avg('rating')) }} / 5</p>
                                     <p class="card-text">Address : {{ $store->address }}</p>
                                     @if ($category->name == 'Kost')
                                         <p class="card-text">Tipe Kost : {{ $store->type }}</p>
