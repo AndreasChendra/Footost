@@ -32,4 +32,19 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Transaction');
     }
+
+    public function review()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    public function store()
+    {
+        return $this->hasMany('App\Store');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
 }

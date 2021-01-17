@@ -20,11 +20,22 @@ class ATKController extends Controller
     public function sortATKPrice($sort)
     {
         $category = Category::where('id', 4)->first();
-        $sort = DB::table('stores')
-                    ->where('category_id', 4)
+        $sort = Store::where('category_id', 4)
                     ->orderBy('price', $sort)
                     ->paginate(2);
         return view('store.store', ['stores' => $sort, 'category' => $category]);
+    }
+
+    public function sortATKRating($sort)
+    {
+        $category = Category::where('id', 4)->first();
+        $store = Store::join('reviews', 'reviews.store_id', '=', 'stores.id')
+            ->orderBy('reviews.rating', $sort)
+            ->select('stores.*')
+            ->where('stores.category_id', 4)
+            ->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     public function show($atk_id)

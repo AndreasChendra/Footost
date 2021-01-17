@@ -21,8 +21,7 @@ class KostController extends Controller
     public function sortKostPrice($sort)
     {
         $category = Category::where('id', 3)->first();
-        $sortPrice = DB::table('stores')
-                    ->where('category_id', 3)
+        $sortPrice = Store::where('category_id', 3)
                     ->orderBy('price', $sort)
                     ->paginate(2);
         return view('store.store', ['stores' => $sortPrice, 'category' => $category]);
@@ -31,21 +30,10 @@ class KostController extends Controller
     public function sortKostRating($sort)
     {
         $category = Category::where('id', 3)->first();
-        // $store = Store::all()
-        //     ->join('reviews', 'reviews.store_id', '=', 'stores.id')
-        //     ->groupBy('id')
-        //     ->orderBy('ratings_average', 'DESC')
-        //     ->get();
-        // $sortRating = Store::orderBy(
-        //             Review::select('rating')
-        //                 ->whereColumn('store_id', '=', 'stores.id')
-        //                 ->orderBy('rating', $sort)
-        //                 ->limit(1)
-        // )->where('category_id', 3)->get();
         $store = Store::join('reviews', 'reviews.store_id', '=', 'stores.id')
             ->orderBy('reviews.rating', $sort)
             ->select('stores.*')
-            ->where('category_id', 3)
+            ->where('stores.category_id', 3)
             ->get();
 
         return view('store.store', ['stores' => $store, 'category' => $category]);

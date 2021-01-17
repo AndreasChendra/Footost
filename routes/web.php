@@ -31,18 +31,22 @@ Route::get('/kost/detail/{kost_id}', 'KostController@show');
 Route::get('/foodndrink', 'FoodDrinkController@index');
 
 Route::get('/cafe', 'FoodDrinkController@cafe');
+Route::get('/cafe/rating/{sort}', 'FoodDrinkController@sortCafeRating');
 Route::get('/cafe/price/{sort}', 'FoodDrinkController@sortCafePrice');
 Route::get('/cafe/detail/{cafe_id}', 'FoodDrinkController@cafeDetail');
 
 Route::get('/makanan', 'FoodDrinkController@makanan');
+Route::get('/makanan/berat/rating/{sort}', 'FoodDrinkController@sortMakananRating');
 Route::get('/makanan/berat/price/{sort}', 'FoodDrinkController@sortMakananPrice');
 Route::get('/makanan/berat/detail/{food_id}', 'FoodDrinkController@foodDetail');
 
 Route::get('/atk', 'ATKController@index');
+Route::get('/alat/tulis/kantor/rating/{sort}', 'ATKController@sortATKRating');
 Route::get('/alat/tulis/kantor/price/{sort}', 'ATKController@sortATKPrice');
 Route::get('/alat/tulis/kantor/detail/{atk_id}', 'ATKController@show');
 
 Route::get('/toserba', 'ToserbaController@index');
+Route::get('/toserba/rating/{sort}', 'ToserbaController@sortToserbaRating');
 Route::get('/toserba/price/{sort}', 'ToserbaController@sortToserbaPrice');
 Route::get('/toserba/detail/{toserba_id}', 'ToserbaController@show');
 
@@ -56,6 +60,8 @@ Route::get('/membership', 'TransactionController@membership');
 //Promo
 Route::get('/promo', 'PromoController@index');
 
+//Review Store
+Route::get('/review/{store_id}', 'ReviewController@vReviewStore');
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     //just admin can access
@@ -90,8 +96,6 @@ Route::group(['middleware' => ['auth', 'member']], function(){
 
     Route::get('/feedback/{store_id}', 'ReviewController@index');
     Route::post('/send/feedback/{store_id}', 'ReviewController@feedback');
-
-    Route::get('/review/{store_id}', 'ReviewController@vReviewStore');
     
 });
 

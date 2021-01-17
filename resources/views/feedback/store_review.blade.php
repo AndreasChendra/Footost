@@ -22,7 +22,7 @@
                                 <table class="table table-hover text-center" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>User ID</th>
+                                            <th>User Name</th>
                                             <th>Description</th>
                                             <th>Rating</th>
                                             <th>Date</th>
@@ -31,7 +31,7 @@
                                     <tbody>
                                         @foreach ($reviews->reverse() as $review)
                                             <tr>
-                                                <td>{{ $review->user_id }}</td>
+                                                <td>{{ $review->user->name }}</td>
                                                 <td>{{ $review->description }}</td>
                                                 <td>{{ $review->rating }}</td>
                                                 <td>{{ $review->created_at}}</td>

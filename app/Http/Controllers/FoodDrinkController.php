@@ -22,11 +22,22 @@ class FoodDrinkController extends Controller
         return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
+    public function sortCafeRating($sort)
+    {
+        $category = Category::where('id', 1)->first();
+        $store = Store::join('reviews', 'reviews.store_id', '=', 'stores.id')
+            ->orderBy('reviews.rating', $sort)
+            ->select('stores.*')
+            ->where('stores.category_id', 1)
+            ->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
+    }
+
     public function sortCafePrice($sort)
     {
         $category = Category::where('id', 1)->first();
-        $sort = DB::table('stores')
-                    ->where('category_id', 1)
+        $sort = Store::where('category_id', 1)
                     ->orderBy('price', $sort)
                     ->paginate(2);
         return view('store.store', ['stores' => $sort, 'category' => $category]);
@@ -43,11 +54,22 @@ class FoodDrinkController extends Controller
     public function sortMakananPrice($sort)
     {
         $category = Category::where('id', 2)->first();
-        $sort = DB::table('stores')
-                    ->where('category_id', 2)
+        $sort = Store::where('category_id', 2)
                     ->orderBy('price', $sort)
                     ->paginate(2);
         return view('store.store', ['stores' => $sort, 'category' => $category]);
+    }
+
+    public function sortMakananRating($sort)
+    {
+        $category = Category::where('id', 2)->first();
+        $store = Store::join('reviews', 'reviews.store_id', '=', 'stores.id')
+            ->orderBy('reviews.rating', $sort)
+            ->select('stores.*')
+            ->where('stores.category_id', 2)
+            ->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     public function cafeDetail($cafe_id)

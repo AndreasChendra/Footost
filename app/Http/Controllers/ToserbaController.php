@@ -20,11 +20,22 @@ class ToserbaController extends Controller
     public function sortToserbaPrice($sort)
     {
         $category = Category::where('id', 5)->first();
-        $sort = DB::table('stores')
-                    ->where('category_id', 5)
+        $sort = Store::where('category_id', 5)
                     ->orderBy('price', $sort)
                     ->paginate(2);
         return view('store.store', ['stores' => $sort, 'category' => $category]);
+    }
+
+    public function sortToserbaRating($sort)
+    {
+        $category = Category::where('id', 5)->first();
+        $store = Store::join('reviews', 'reviews.store_id', '=', 'stores.id')
+            ->orderBy('reviews.rating', $sort)
+            ->select('stores.*')
+            ->where('stores.category_id', 5)
+            ->get();
+
+        return view('store.store', ['stores' => $store, 'category' => $category]);
     }
 
     public function show($toserba_id)
